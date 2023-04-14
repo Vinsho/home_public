@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %}Stocks{% endblock title%} 
+{% load components %} 
+{% block content %}
+<h1 class="text-center">Stocks</h1>
+<div class="row">
+  {% for stock in stocks%}
+  <div class="col-2">
+    <div class="card text-center w-200 h-150">
+      <a href="/stocks/{{stock.ticker}}" class="nav-link">
+        <h3 class="card-title">
+          {%impact stock.day_avg_rating%} {{stock.ticker}}
+        </h3>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="col-2">
+    <div class="card text-center w-200 h-150">
+      <form action="/stocks/" method="post">
+        {% csrf_token %}
+        <input
+          type="text"
+          class="form-control mb-10"
+          placeholder="Yahoo stock ticker"
+          name="ticker"
+        />
+        <input
+          class="btn my-10"
+          type="submit"
+          value="Add"
+          onclick="toastAlert()"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

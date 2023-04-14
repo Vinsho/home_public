@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <link rel="shortcut icon" href="{% static 'sun.png' %}" />
+    <title>{% block title %}Home{% endblock title %}</title>
+  </head>
+  <body>
+    <div class="sticky-alerts"></div>
+    <div class="page-wrapper with-navbar">
+      <nav class="navbar">
+        <a href="/" class="nav-link">
+          <i class="fa-solid fa-house m-5" aria-hidden="true"></i>
+        </a>
+        {% if request.user.is_authenticated %}
+        <a href="/klcovany" class="nav-link">
+          <span>
+            <i class="fa-solid fa-tractor m-5" aria-hidden="true"></i>
+            Klcovany
+          </span>
+        </a>
+        <a href="/stocker" class="nav-link">
+          <text><i class="fa-solid fa-money-bill-trend-up m-5" aria-hidden="true"></i>
+            Stocker
+          </span>
+        </a>
+        <a href="/stocks" class="nav-link mr-auto">
+          <text><i class="fa-solid fa-scale-balanced m-5" aria-hidden="true"></i>
+            Stocks
+          </span>
+        </a>
+        {% endif %}
+
+        <button
+          class="btn btn-square ml-auto"
+          type="button"
+          onclick="halfmoon.toggleDarkMode()"
+        >
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        </button>
+        <div class="navbar-content">
+          {% if request.user.is_authenticated %}
+          <a href="/logout" class="nav-link">Logout</a>
+          {% else %}
+          <a href="/login" class="nav-link">Login</a>
+          {% endif %}
+        </div>
+      </nav>
+      <div class="content-wrapper px-20">
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+
+    <script type="text/javascript">
+      halfmoon.toggleDarkMode();
+      function toastAlert() {
+        halfmoon.initStickyAlert({
+          content: "Updated",
+          title: "Success alert",
+          alertType: "alert-success",
+          fillType: "filled-lm",
+        });
+      }
+    </script>
+  </body>
+</html>

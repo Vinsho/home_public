@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Klcovany{% endblock title%}
+{% load components %}
+
+{% block content %}
+
+<div class="container-fluid px-20 pt-5">
+  <text class="font-size-24 pb-20">
+    <i {% if plant.energy_surplus > 0 %}class="fa-regular fa-sun m-5"{% else %}class="fa-solid fa-cloud m-5"{% endif %}   aria-hidden="true"></i>Energy surplus: {{plant.energy_surplus}} W/h
+  </text>
+    <div class="d-flex flex-wrap">
+        {% for device in plant.devices.all%}
+          {%device_card device priority_range%}
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+{% endblock content %}
+

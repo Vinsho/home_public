@@ -1,0 +1,17 @@
+{% load components %}
+
+<div class="card">
+  <h3 class="card-title">
+    {% impact article.impact %}
+    <a href="/stocks/{{article.stock.ticker}}">{{article.stock.ticker}}</a>
+  </h3>
+  <p class="text-muted">
+    <i class="fa-regular fa-clock mr-5" aria-hidden="true"></i
+    >{{article.datetime}}
+  </p>
+  <p class="font-weight-bold font-size-16">{{article.title}}</p>
+  <p class="text-muted">{{article.description}}...</p>
+  <div class="text-right">
+    <a href="{{article.url}}" class="btn">Read More</a>
+  </div>
+</div>

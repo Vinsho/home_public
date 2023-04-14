@@ -1,0 +1,9 @@
+{%if impact < 0 %}
+<span class="text-danger">
+  <i class="fa-solid fa-down-long" aria-hidden="true"></i> {{impact}}
+</span>
+{% else %}
+<span class="text-success">
+  <i class="fa-solid fa-up-long" aria-hidden="true"></i> {{impact}}
+</span>
+{% endif %}

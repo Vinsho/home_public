@@ -1,0 +1,11 @@
+django
+psycopg2
+django-crontab
+pandas
+python-dotenv
+django-cors-headers
+gunicorn
+beautifulsoup4
+requests
+langchain
+openai

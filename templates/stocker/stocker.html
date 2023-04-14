@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Stocker{% endblock title%}
+{% load components %}
+
+{% block content %}
+<h1>Stocker selection</h1>
+
+<div class="row">
+  <div class="col-6">
+    {% for article in negative_news%}
+      {% stock_card article %}
+    {% endfor %}
+  </div>
+
+  <div class="col-6">
+    {% for article in positive_news%}
+      {% stock_card article %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

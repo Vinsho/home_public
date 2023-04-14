@@ -1,0 +1,52 @@
+<form action="" method="post" id="form{{device.id}}">
+  {% csrf_token %}
+  <div class="w-400">
+    <div class="card rounded">
+      <h3 class="card-title">
+        <b class="font-size-24 pb-10" name="name">{{device.name}}</b>
+        <input type="hidden" name="device_id" value="{{device.id}}" />
+        {% if device.status == "on"%}
+        <text class="text-success">on</text>
+        {% else %}
+        <text class="text-danger">off</text>
+        {% endif %}
+      </h3>
+      <div class="custom-checkbox pb-10">
+        <input
+          type="checkbox"
+          id="checkbox{{device.id}}"
+          name="is_selected"
+          {% if device.is_selected %}
+          checked="checked"
+          {% endif %}
+        />
+        <label for="checkbox{{device.id}}"> Turn on in case of surplus </label>
+      </div>
+      <div class="row align-items-center py-10">
+        <text class="col-6">Consumption [W/h]:</text>
+      <input
+        type="number"
+        class="form-control col-6"
+        name="consumption"
+        value="{{device.consumption}}"
+      />
+    </div>
+      <div class="row lign-items-center py-10">
+        <text class="col-6">Priority:</text>
+        <select class="form-control col-6" id="select{{device.id}}" name="priority" form="form{{device.id}}">
+          {% for i in priority_range %}
+            <option value="{{i}}" {% if device.priority == i %} selected="selected" {% endif %}>{{i}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="text-center mt-20">
+      <input
+        class="btn active btn-rounded"
+        type="submit"
+        value="Update"
+        onclick="toastAlert()"
+      />
+      </div>
+    </div>
+  </div>
+</form>
